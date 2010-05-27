@@ -56,18 +56,19 @@ set nostartofline               " don't move to start of line after commands
 set backspace=eol,start,indent  " backspace over everything
 set whichwrap=<,>,h,l,b,s,~,[,]
 set iskeyword=@,48-57,128-167,224-235,_  "default: @,48-57,_,192-255
-set listchars=tab:>.,trail:.,extends:>,precedes:<,eol:$
+set listchars=tab:»·,trail:·,extends:>,precedes:<
+set list
 
 """""""""" visual
-set guioptions=AceiMgrb       " NEVER EVER put ''a in here
-set number                    " show line numbers
+set guioptions=AceiMg         " NEVER EVER put ''a in here
+set nonumber                  " show line numbers
 set laststatus=2              " always show status line
-set scrolloff=4               " minlines to show around cursor
-set sidescrolloff=4           " minchars to show around cursor
+set scrolloff=2               " minlines to show around cursor
+set sidescrolloff=2           " minchars to show around cursor
 set shortmess=asTIA           " supress some file messages
 set linebreak                 " when wrapping, try to break at characters in breakat
 set breakat=\ ^I!@*-+;:,./?   " when wrapping, break at these characters
-set showbreak=>               " character to show that a line is wrapped
+set showbreak=\ \ \ \ \ \ \ \ " what to show at the start of a wrapped line
 set showcmd                   " show number of selected chars/lines in status
 set showmatch                 " briefly jump to matching brace
 set matchtime=1               " show matching brace time (1/10 seconds)
@@ -83,8 +84,9 @@ set visualbell                " must turn visual bell on to remove audio bell
 set t_vb=                     " turn bells off, must also set this in .gvimrc
 
 """""""""" statusline, windows, tab pages, buffers
-set statusline=%-2(%M\ %)%5l,%-5v%<%f\ %m\ \ %{hostname()}:%r%{CwdShort()}%=%(%-5([%R%H%W]\ %)\ %10([%Y]%{ShowFileFormatFlag(&fileformat)}\ %)\ %L\ lines%)
-set showtabline=2
+" set statusline=%-2(%M\ %)%5l,%-5v%<%f\ %m\ \ %{hostname()}:%r%{CwdShort()}%=%(%-5([%R%H%W]\ %)\ %10([%Y]%{ShowFileFormatFlag(&fileformat)}\ %)\ %L\ lines%)
+set statusline=%<%f%=\ [%1*%M%*%n%R%H]\ %-19(%3l,%02c%03V%)%O'%02b'
+set showtabline=0
 
 " TODO
 " see help for these functions
@@ -110,10 +112,12 @@ filetype plugin indent on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""" User options you might actually care about
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set guifont=Monaco:h13
+" set guifont=Monaco:h13
+set guifont=Menlo:h11
 set linespace=0                 " spacing between lines if font is too crowded
 
-colorscheme desert
+" colorscheme desert
+colorscheme mayansmoke
 " colorscheme macvim
 
 " TODO ?

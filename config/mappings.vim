@@ -21,7 +21,7 @@ if has("gui_macvim")
 endif
 
 """""""""" shortcuts
-nn  <silent> <M-F11>           :set fullscreen!<CR>
+nn  <silent> <D-Cr>            :set fullscreen!<CR>
 nn  <silent> TT                :call Tabnew()<CR>:e ~/todo/today.txt<CR>
 
 """""""""" tabs
@@ -43,32 +43,33 @@ nn  <silent> <Leader>0         :call CwdCurrent()<CR>:call FizzyReIndexCwd()<CR>
 """""""""" windows, buffers and files
 nn  <silent> <D-q>             :qa<CR>
 nn  <silent> <Leader>q         :qa<CR>
-ino <silent> <Leader>q         <C-o>:qa<CR>
 
 nn  <silent> <D-s>             :up<CR>
 nn  <silent> <Leader>s         :up<CR>
-ino <silent> <Leader>q         <C-o>:up<CR>
 
-nn  <silent> <D-w>             :bw<CR>gT
-nn  <silent> <Leader>s         :bw<CR>gT
-ino <silent> <Leader>q         <C-o>:bw<CR>gT
+nn  <silent> <C-Tab>           <C-^>
+nn  <silent> <C-S-Tab>         <C-^>
+nn  <silent> <M-Tab>           <C-w>w
+nn  <silent> <M-S-Tab>         <C-w>W
 
 """""""""" directory browsing
 nn  <silent> <D-e>             :call BrowserFromCurrentDir()<CR>
 nn  <silent> <Leader>e         :call BrowserFromCurrentDir()<CR>
+nn  <silent> _                 :call BrowserFromCurrentDir()<CR>
 
 nn  <silent> <D-E>             :call BrowserFromCurrentFilePath()<CR>
 nn  <silent> <Leader>E         :call BrowserFromCurrentFilePath()<CR>
+nn  <silent> -                 :call BrowserFromCurrentFilePath()<CR>
 
 """""""""" fuf-fizzy
-nn  <silent> <D-r>             :call Tabnew()<CR>:FufFizzyFile<CR>
-nn  <silent> <Leader>r         :call Tabnew()<CR>:FufFizzyFile<CR>
+nn  <silent> <D-r>             :FufFizzyFile<CR>
+nn  <silent> <Leader>r         :FufFizzyFile<CR>
 
-nn  <silent> <D-R>             :call Tabnew()<CR>:FufFizzyDir<CR>
-nn  <silent> <Leader>R         :call Tabnew()<CR>:FufFizzyDir<CR>
+nn  <silent> <D-R>             :FufFizzyDir<CR>
+nn  <silent> <Leader>R         :FufFizzyDir<CR>
 
 nn  <silent> <D-\>             :call FizzyReIndexCwd()<CR>
-nn  <silent> <Leader>\         :callFizzyReIndexCwd()<CR>
+nn  <silent> <Leader>\         :call FizzyReIndexCwd()<CR>
 
 """""""""" selections
 nn   <special> <F2>            :let @/ = ""\|nohlsearch<CR>
@@ -93,10 +94,12 @@ vn  <silent> <S-Tab>           <gv
 vn  <silent> <<                <gv
 
 nn  <silent> <M-Right>         >>
-nn  <silent> <M-Left>          <<
-
 vn  <silent> <M-Right>         >gv
+ino <silent> <M-Right>         <C-o>>><C-o>2l
+
+nn  <silent> <M-Left>          <<
 vn  <silent> <M-Left>          <gv
+ino <silent> <M-Left>          <C-o><<<C-o>2h
 
 " TODO ?
 ino <silent> <S-Tab>           <C-o><<<C-o>^

@@ -1,3 +1,5 @@
+" autocmd!
+
 " i want macvim to go fullscreen on startup
 function! OnVimEnter()
   if has("macunix") && has("gui_running")
@@ -6,7 +8,8 @@ function! OnVimEnter()
     " macvim height calculation bug, forcing lines manually
     set fuoptions=maxhorz
     set fullscreen
-    set lines=44
+    set lines=100
+    " set columns=500
   endif
 endfunction
 autocmd VimEnter    * call OnVimEnter()
