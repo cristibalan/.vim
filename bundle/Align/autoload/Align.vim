@@ -574,6 +574,11 @@ fun! Align#Align(hasctrl,...) range
 	 let &ic     = keep_ic
 	 let &report = keep_report
 	 let &hls    = keep_hls
+
+   " good thing this function is 500 lines long and it was easy to figure out
+   " that it could return without making sure it preserves the original et :/
+   let etkeep   = &l:et
+   let pastekeep= &l:paste
 "     call Dret("Align#Align")
 	 return
 	endif
