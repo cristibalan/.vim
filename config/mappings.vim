@@ -27,6 +27,8 @@ nn  <silent> TT                :call Tabnew()<CR>:e ~/todo/today.txt<CR>
 """""""""" tabs
 nn  <silent> <D-w>             :q<CR>
 nn  <silent> <Leader>w         :q<CR>
+nn  <silent> <D-S-w>           :bwipeout<CR>
+nn  <silent> <Leader>w         :bwipeout<CR>
 nn  <silent> <D-t>             :call Tabnew()<CR>
 nn  <silent> <D-Left>          gT
 nn  <silent> <Leader><Left>    gT
@@ -49,8 +51,12 @@ nn  <silent> <Leader>s         :up<CR>
 
 nn  <silent> <C-Tab>           <C-^>
 nn  <silent> <C-S-Tab>         <C-^>
+nn  <silent> <Bs>              <C-^>
+nn  <silent> <Cr>              <C-^>
 nn  <silent> <M-Tab>           <C-w>w
 nn  <silent> <M-S-Tab>         <C-w>W
+nn  <silent> <Tab>             <C-w>w
+nn  <silent> <S-Tab>           <C-w>W
 
 """""""""" directory browsing
 nn  <silent> <D-e>             :call BrowserFromCurrentDir()<CR>
@@ -77,12 +83,13 @@ ino  <special> <F2>            <C-o>:let @/ = ""\|nohlsearch<CR>
 
 " select the most recent pasted text, generally works
 " intended to be similar to gv
-nnoremap gb '[V']
+nn gb '[V']
 
 """""""""" toggle switches
 nn  <silent> <Leader>a         :set wrap!<CR>
 nn  <silent> <Leader>l         :set list!<CR>
 nn  <silent> <Leader>p         :set paste!<CR>
+nn  <silent> <Leader>n         :set number!<CR>
 
 """""""""" indenting
 " TODO check with template expansion
