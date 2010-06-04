@@ -92,14 +92,14 @@ hi LineNr       guifg=#FEFEFC           guibg=LightSteelBlue    gui=NONE
 hi MatchParen   guifg=White             guibg=MediumPurple1     gui=NONE
 hi ModeMsg      guifg=White             guibg=tomato            gui=bold
 hi MoreMsg      guifg=SeaGreen4         guibg=bg                gui=bold
-hi NonText      guifg=LightSteelBlue4   guibg=bg                gui=bold
+hi NonText      guifg=LightSteelBlue4   guibg=#e4e4d8           gui=bold
 hi Pmenu        guifg=Black             guibg=PaleTurquoise3    gui=NONE
 hi PmenuSbar    guifg=White             guibg=PowderBlue        gui=NONE
 hi PmenuSel     guifg=White             guibg=Black             gui=NONE
 hi PmenuThumb   guifg=SkyBlue3          guibg=White             gui=reverse
 hi Question     guifg=Chartreuse4       guibg=bg                gui=bold
 hi SignColumn   guifg=LightSteelBlue4   guibg=#F4F4E8           gui=bold
-hi Search       guifg=white             guibg=red4              gui=NONE
+hi Search       guifg=white             guibg=#CC6666           gui=NONE
 if exists('g:mayansmoke_special_key_visibility') && g:mayansmoke_special_key_visibility >= 2
     hi SpecialKey   guifg=black             guibg=NavajoWhite       gui=NONE
 elseif exists('g:mayansmoke_special_key_visibility') && g:mayansmoke_special_key_visibility == 0
@@ -118,7 +118,7 @@ hi TabLineFill  guifg=fg                guibg=bg                gui=reverse
 hi TabLineSel   guifg=fg                guibg=bg                gui=bold
 hi Title        guifg=DeepSkyBlue3      guibg=bg                gui=bold
 hi VertSplit    guifg=ivory1            guibg=LightSkyBlue4     gui=NONE
-hi Visual       guifg=white             guibg=DeepSkyBlue1      gui=NONE
+hi Visual       guifg=white             guibg=LightSteelBlue    gui=NONE
 hi WarningMsg   guifg=Firebrick2        guibg=bg                gui=NONE
 hi WildMenu     guifg=Black             guibg=SkyBlue           gui=NONE
 " }}}
