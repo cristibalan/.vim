@@ -24,7 +24,10 @@ set langmenu=none               " always use english menus at least
 set ffs=unix,dos,mac          " prefer unix line endings
 
 """""""""" general
-set cpoptions+=I              " keep autoindent - doesn't seem to work tho
+" new shit for soft wrapping
+" these settings are already somewhere below
+" set showbreak=>\   " conflicts with listchar indent
+set cpoptions+=In             " keep autoindent - doesn't seem to work tho
 set autoread                  " read outside modified files
 set encoding=UTF-8
 set history=10000             " number of history items
