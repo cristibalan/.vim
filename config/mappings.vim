@@ -97,10 +97,8 @@ nn  <silent> <Leader>n         :set number!<CR>
 """""""""" indenting
 " TODO check with template expansion
 " TODO check if works in normal mode
-vn  <silent> <Tab>             >gv
 vn  <silent> >>                >gv
 
-vn  <silent> <S-Tab>           <gv
 vn  <silent> <<                <gv
 
 nn  <silent> <M-Right>         >>
@@ -110,9 +108,6 @@ ino <silent> <M-Right>         <C-o>>><C-o>2l
 nn  <silent> <M-Left>          <<
 vn  <silent> <M-Left>          <gv
 ino <silent> <M-Left>          <C-o><<<C-o>2h
-
-" TODO ?
-ino <silent> <S-Tab>           <C-o><<<C-o>^
 
 """""""""" swap lines
 " TODO make it work with visual mode (move a selected block up and down)
