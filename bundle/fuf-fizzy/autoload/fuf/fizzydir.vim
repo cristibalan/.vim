@@ -114,7 +114,8 @@ endfunction
 
 "
 function s:handler.onOpen(expr, mode)
-  call fuf#openFile(a:expr, a:mode, g:fuf_reuseWindow)
+  execute ':E ' . fnameescape(a:expr)
+  " call fuf#openFile(a:expr, a:mode, g:fuf_reuseWindow)
 endfunction
 
 "
