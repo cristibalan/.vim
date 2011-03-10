@@ -15,7 +15,7 @@ endfunction
 autocmd VimEnter    * call OnVimEnter()
 
 " remove all buffers on exit so we don't have them as hidden on reopen
-autocmd VimLeavePre * 1,255bwipeout
+" autocmd VimLeavePre * 1,255bwipeout
 
 " remove empty or otherwise dead buffers when moving away from them
 function! OnTabLeave()
@@ -27,4 +27,4 @@ autocmd TabLeave    * call OnTabLeave()
 
 " keep custom global cwd the same across buffers
 " see chelu/cwd.vim
-autocmd BufEnter    * call CdReset()
+" autocmd BufEnter    * call CdReset()

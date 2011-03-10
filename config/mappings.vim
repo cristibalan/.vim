@@ -59,7 +59,7 @@ nn  <silent> <Tab>             <C-w>w
 nn  <silent> <S-Tab>           <C-w>W
 
 nn  <silent> <Leader>h         :sp<CR>
-nn  <silent> <Leader>v         :vsp<CR>
+nn  <silent> <Leader>v         :vsp<CR><C-w>w
 
 """""""""" directory browsing
 nn  <silent> <D-e>             :call BrowserFromCurrentDir()<CR>
