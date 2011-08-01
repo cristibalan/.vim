@@ -61,6 +61,8 @@ nn  <silent> <S-Tab>           <C-w>W
 nn  <silent> <Leader>h         :sp<CR>
 nn  <silent> <Leader>v         :vsp<CR><C-w>w
 
+nn  <silent> <Leader>`         :maca openFileBrowser:<CR>
+
 """""""""" directory browsing
 nn  <silent> <D-e>             :call BrowserFromCurrentDir()<CR>
 nn  <silent> <Leader>e         :call BrowserFromCurrentDir()<CR>
