@@ -120,7 +120,8 @@ ino <silent> <M-Up>            <C-o>:call SwapUp()<CR>
 ino <silent> <M-Down>          <C-o>:call SwapDown()<CR>
 
 """""""""" expansions
-inoremap <C-space> <C-p>
+ino <C-space> <C-p>
+ino ,.        <C-p>
 
 """""""""" <3 _
 " helpers to use _ like a word boundary

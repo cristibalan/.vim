@@ -86,6 +86,8 @@ set noerrorbells
 set visualbell                " must turn visual bell on to remove audio bell
 set t_vb=                     " turn bells off, must also set this in .gvimrc
 
+set diffopt=filler,vertical,context:3
+
 """""""""" statusline, windows, tab pages, buffers
 " set statusline=%-2(%M\ %)%5l,%-5v%<%f\ %m\ \ %{hostname()}:%r%{CwdShort()}%=%(%-5([%R%H%W]\ %)\ %10([%Y]%{ShowFileFormatFlag(&fileformat)}\ %)\ %L\ lines%)
 set statusline=%<%f%=\ [%1*%M%*%n%R%H]\ %-19(%3l,%02c%03V%)%O'%02b'
