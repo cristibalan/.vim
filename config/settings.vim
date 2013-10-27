@@ -4,7 +4,8 @@
 
 " save temporary backups only when saving, but not in the same directory
 set nobackup
-set writebackup
+set nowritebackup
+set swapfile
 set directory=$HOME/tmp/vim,$HOME/tmp,/var/tmp,/tmp,$TMP,$TEMP
 
 " use VI incompatible features (most plugins don't run without it)
@@ -79,7 +80,7 @@ set showmode                  " show mode in status when not in normal mode
 set virtualedit=block         " allow moving past end of line in block selection mode
 set wildmenu                  " nice menu when completing commands
 set wildmode=list:longest,full
-" set cursorline                " highlight cursor line
+set cursorline                " highlight cursor line
 " set cursorcolumn              " highlight cursor column
 
 set noerrorbells
@@ -88,9 +89,14 @@ set t_vb=                     " turn bells off, must also set this in .gvimrc
 
 set diffopt=filler,vertical,context:3
 
+" set winwidth=90
+" set winheight=30
+" set winminwidth=10
+" set winminheight=5
+
 """""""""" statusline, windows, tab pages, buffers
 " set statusline=%-2(%M\ %)%5l,%-5v%<%f\ %m\ \ %{hostname()}:%r%{CwdShort()}%=%(%-5([%R%H%W]\ %)\ %10([%Y]%{ShowFileFormatFlag(&fileformat)}\ %)\ %L\ lines%)
-set statusline=%<%f%=\ [%1*%M%*%n%R%H]\ %-19(%3l,%02c%03V%)%O'%02b'
+set statusline=%<%t%=\ [%1*%M%*%n%R%H]\ %-19(%3l,%02c%03V%)%O'%02b'
 set showtabline=0
 
 " TODO
@@ -107,6 +113,7 @@ set noequalalways
 set guiheadroom=0
 set hidden
 set splitbelow                " split windows below current one
+set splitright                " split windows to the right
 set title
 
 syntax enable
@@ -117,13 +124,16 @@ filetype plugin indent on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""" User options you might actually care about
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set guifont=Monaco:h13
-set guifont=Menlo:h11
+" set guifont=Menlo:h11
+" set guifont=Menlo:h13
+set guifont=Menlo:h18
 set linespace=0                 " spacing between lines if font is too crowded
 
 " colorscheme desert
 colorscheme mayansmoke
 " colorscheme macvim
+execute "set colorcolumn=" . join(range(81,335), ',')
+hi ColorColumn guibg=#FFFDD0
 
 " TODO ?
 """""""""" tabs and spaces
@@ -133,3 +143,24 @@ set indentexpr=
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
+
+
+" also see vimroom
+function! TextEdit()
+  return
+  set spell
+  set formatoptions=1
+  set linebreak
+  set wrap
+  set nolist
+  nnoremap j gj
+  nnoremap k gk
+  vnoremap j gj
+  vnoremap k gk
+  " set guifont=Monaco:h16
+endfunction
+
+if has('autocmd')
+  " au BufRead,BufNewFile *.txt call TextEdit()
+  " au BufRead,BufNewFile *.markdown call TextEdit()
+endif

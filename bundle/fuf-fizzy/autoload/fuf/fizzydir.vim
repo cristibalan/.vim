@@ -53,7 +53,7 @@ ruby << RUBY
 
   def fizzydir_finder
     @fizzydir_finder ||= begin
-      cmd = 'find -d . -type d -not -path "*.git*" -not -path "*vendor/*" -not -path "*public/a/*" | sed -e "s/^\.\///"'
+      cmd = 'find -d . -type d -not -path "*.git/*" -not -path "*.svn/*" -not -path "*vendor/*" -not -path "*public/a/*" | sed -e "s/^\.\///"'
       Fizzy.new(`#{cmd}`.map{|f|f.chomp})
     end
   end
