@@ -132,8 +132,9 @@ set linespace=0                 " spacing between lines if font is too crowded
 " colorscheme desert
 colorscheme mayansmoke
 " colorscheme macvim
-execute "set colorcolumn=" . join(range(81,335), ',')
-hi ColorColumn guibg=#FFFDD0
+" execute "set colorcolumn=" . join(range(81,335), ',')
+" hi ColorColumn guifg=NONE guibg=#FFFDD0
+" hi ColorColumn guifg=NONE guibg=NONE
 
 " TODO ?
 """""""""" tabs and spaces

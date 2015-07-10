@@ -40,7 +40,7 @@ nn <silent> <M-Down> }
 
 """""""""" shortcuts
 nn  <silent> <D-Cr>            :set fullscreen!<CR>
-nn  <silent> TT                :call Tabnew()<CR>:e ~/todo/today.txt<CR>
+nn  <silent> TT                :call Tabnew()<CR>:e ~/Dropbox/Documents/todo/today.txt<CR>
 
 """""""""" tabs
 nn  <silent> <D-w>             :q<CR>
@@ -213,9 +213,13 @@ ino          <M-;>             <C-p>
 """""""""" cmaps
 cno <expr> / getcmdtype() == '/' ? '\/' : '/'
 
+
+"""""""""" dash
+nmap <silent> <F1> <Plug>DashGlobalSearch
+
 """""""""" other random TODO ?
 " echo highlight group at cursor location
-" map <leader>hl  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+map <leader>hl  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " Enclose
 "vnoremap <silent> <M-{> >gv:<C-u>call Enclose('{', 1)<CR>
