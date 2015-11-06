@@ -120,6 +120,8 @@ syntax enable
 filetype plugin indent on
 " filetype plugin on
 
+" set noballooneval             " disable source code documentation popups
+let g:netrw_nobeval=1         " disable netrw ballooneval
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""" User options you might actually care about
