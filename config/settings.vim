@@ -18,6 +18,8 @@ let did_install_syntax_menu=1   " pretend that the syntax menu was already loade
 aunmenu *
 set langmenu=none               " always use english menus at least
 
+" Disable logipat plugin that adds :ELP which makes :E not work
+let g:loaded_logipat = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""" Basic settings
@@ -109,7 +111,7 @@ set showtabline=0
 
 set switchbuf=usetab
 set tabpagemax=100
-set noequalalways
+set equalalways
 set guiheadroom=0
 set hidden
 set splitbelow                " split windows below current one

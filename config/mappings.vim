@@ -102,6 +102,9 @@ nn  <silent> <Leader>R         :FufFizzyDir<CR>
 nn  <silent> <D-\>             :call FizzyReIndexCwd()<CR>
 nn  <silent> <Leader>\         :call FizzyReIndexCwd()<CR>
 
+nn  <D-k>                      :Ack<Space>
+nn  <Leader>k                  :Ack<Space>
+
 """""""""" selections
 nn   <silent> <special> <F2>            :let @/ = ""\|nohlsearch<CR>
 ino  <special> <F2>            <C-o>:let @/ = ""\|nohlsearch<CR>
@@ -211,7 +214,7 @@ ino          <M-;>             <C-p>
 
 
 """""""""" cmaps
-cno <expr> / getcmdtype() == '/' ? '\/' : '/'
+" cno <expr> / getcmdtype() == '/' ? '\/' : '/'
 
 
 """""""""" dash
