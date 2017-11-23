@@ -4,6 +4,7 @@ nn 0 ^
 nn - $
 nn \ :
 
+" let mapleader = "§"
 let mapleader = "`"
 let maplocalleader = "|"
 
@@ -81,7 +82,15 @@ nn  <silent> <Leader>h         :sp<CR>
 nn  <silent> <Leader>v         :vsp<CR>
 
 nn  <silent> <D-d>             :vsp<CR>
-nn  <silent> <D-D>           :sp<CR>
+nn  <silent> <D-D>             :sp<CR>
+
+nn  <silent> <C-w>o            <Nop>
+nn  <silent> <C-w>\            <C-w>\|
+nn  <silent> <C-w>-            <C-w>_
+nn  <silent> <C-w><Bs>         <C-w>=
+nn  <silent> <C-w><CR>         <C-w>\|<C-w>_
+nn  <silent> <Leader><Bs>      <C-w>=
+nn  <silent> <Leader><CR>      <C-w>\|<C-w>_
 
 nn  <silent> <Leader>`         :maca openFileBrowser:<CR>
 
