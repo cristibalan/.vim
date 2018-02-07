@@ -1,8 +1,40 @@
 class Fizzy
   class TooManyEntries < RuntimeError; end
 
-  def initialize(files)
-    @files = files
+  NOT_DIRS = %w(
+    .git
+    .jhw-cache
+    .svn
+    bower_components
+    compiled
+    node_modules
+    public/a
+    tmp
+    vendor
+    target
+    classes
+    resources/public/js
+  ).map{|x| "-not -path '*#{x}/*'"}.join(" ")
+  NOT_FILES = %w(
+    *.gif
+    *.jpg
+    *.png
+    .DS_Store
+  ).map{|x| "-not -name '#{x}'"}.join(" ")
+
+  SED = 'sed -e "s/^\.\///"'
+  CMD_DIRS = "find -d . -type d #{NOT_DIRS}"
+  CMD_FILES = "find -d . -type f #{NOT_DIRS} #{NOT_FILES}"
+
+  def self.dirs
+    new(`#{Fizzy::CMD_DIRS} | #{Fizzy::SED}`)
+  end
+  def self.files
+    new(`#{Fizzy::CMD_FILES} | #{Fizzy::SED}`)
+  end
+
+  def initialize(entries)
+    @entries = entries.split("\n").map{|f|f.chomp}
   end
 
   def search(pattern, &block)
@@ -26,14 +58,14 @@ class Fizzy
     file_regex = Regexp.new(file_regex_raw, Regexp::IGNORECASE)
 
     @dir_matches = {}
-    @files.map do |file|
+    @entries.map do |file|
       dir_match = match_dir(File.dirname(file), dir_parts, dir_regex, dir_parts_length)
       next if dir_match[:missed]
 
       file_match = match_file(File.basename(file), file_part, file_regex)
       next if !file_match
 
-      # Shorter files at the top
+      # Shorter entries at the top
       # Doing this here instead of passing the full filename to match_file and match_dir
       path_length_offset = 1 + 1.0/file.length
       result = {
@@ -72,14 +104,14 @@ class Fizzy
 
     results = case pattern.length
     when 0
-      @files[0, options[:max_results]].map{ |f| { :path => f, :score => 0.0001 }}
+      @entries[0, options[:max_results]].map{ |f| { :path => f, :score => 0.0001 }}
     when 1
       matched = []
       letter_at_start_of_word_pattern = Regexp.new("(^|\/)#{pattern}[^\/]*$", Regexp::IGNORECASE)
-      @files.each { |f| matched << f if f =~ letter_at_start_of_word_pattern; break if matched.length == options[:max_results] }
+      @entries.each { |f| matched << f if f =~ letter_at_start_of_word_pattern; break if matched.length == options[:max_results] }
 
       if matched.length < options[:max_results]
-        @files.each { |f| matched << f if f.index(pattern); break if matched.length == options[:max_results] }
+        @entries.each { |f| matched << f if f.index(pattern); break if matched.length == options[:max_results] }
       end
       matched.map{ |f| { :path => f, :score => 0.0001 }}
     else
@@ -211,7 +243,7 @@ class Fizzy
       score *= (segment_bonuses/2.0 + 1.01) # two segment starts are just a bit better than start of word
 
       # Fizzy is a positive thinker, no penalties yet.
-      # Excluding all these files before they get ranked is probably wiser anyway.
+      # Excluding all these entries before they get ranked is probably wiser anyway.
       # score /= 2 if match.string =~ /\.(gif|jpg|png|tiff|exe|pdf|doc|xls|ppt)$/
 
       score = 0.001 if score == 0
