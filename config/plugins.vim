@@ -1,5 +1,5 @@
 " disable some built in plugins to avoid turning into a kitchen sink
-let g:loaded_matchparen = 1      " disable matching of braces when moving around, it's too slow
+" let g:loaded_matchparen = 1      " disable matching of braces when moving around, it's too slow
 let loaded_gzip = 1              " disable editing of compressed files
 let g:loaded_tarPlugin = 1       " disable browsing of tar files
 let g:loaded_zipPlugin = 1       " disable browsing of zip files
@@ -15,7 +15,7 @@ let g:netrw_keepdir=1
 let g:fuf_modes = ['fizzyfile', 'fizzydir', 'buffer', 'tag']
 
 """""""""" NERDCommenter settings
-map <space><space> <plug>NERDCommenterToggle
+map <Bs> <plug>NERDCommenterToggle
 let g:NERDRemoveExtraSpaces=1
 let g:NERDSpaceDelims=1
 let g:NERDMenuMode=0

@@ -1,12 +1,73 @@
 " set langmap=ik,jh,kj,hi,IK,JH,KJ,HI
 " alternative: http://fitzsimmons.ca/post/2916403349/vim-ijkl
+set macmeta
 nn 0 ^
-nn - $
-nn \ :
+nn - :Ex<Cr>
 
 " let mapleader = "§"
 let mapleader = "`"
-let maplocalleader = "|"
+let maplocalleader = "\\"
+
+
+"""""""""" completion
+
+" https://stackoverflow.com/a/2138303
+let g:stop_autocomplete=0
+
+function! CleverTab(type)
+    if a:type=='omni'
+        if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+            let g:stop_autocomplete=1
+            return "\<C-P>"
+        elseif !pumvisible() && !&omnifunc
+            return "\<C-X>\<C-O>\<C-P>"
+        endif
+    elseif a:type=='keyword' && !pumvisible() && !g:stop_autocomplete
+        return "\<C-X>\<C-P>\<C-P>"
+    elseif a:type=='next'
+        if g:stop_autocomplete
+            let g:stop_autocomplete=0
+        else
+            return "\<C-P>"
+        endif
+    endif
+    return ''
+endfunction
+
+" inoremap <silent> <M-space> <C-R>=CleverTab('omni')<CR><C-R>=CleverTab('keyword')<CR><C-R>=CleverTab('next')<CR>
+
+ino          <M-space>         <C-n>
+ino          <M-p>             <C-p>
+ino          <S-space>         <C-x><C-o>
+
+" Execute current line or current selection as Vim EX commands.
+nnoremap <silent> <space>ve :exe getline(".")<CR>
+vnoremap <silent> <space>ve :<C-w>exe join(getline("'<","'>"),'<Bar>')<CR>
+
+"""""""""" clojure
+
+" slurp/barf with autoindent
+nmap  <M-right> >)=%(%
+nmap  <M-left> mj<)mh='j
+
+nmap <M-o> o(
+
+noremap ' `
+" eval form
+nmap <f3> mlcpp'l
+" eval surrounding top level def
+nmap <M-f3> ml?def<Cr>cpp'l
+" move to col 0 of a new line below and eval form
+nmap <S-f3> mlo<esc>cppu'l
+" move to mark t, eval and move back
+map <D-f3> mk'tcpp'k
+
+" paste last eval
+nmap <f4> :Last<CR>ggVGy:pc<CR>o<esc>p==0
+nmap <M-i> <I
+nmap <M-a> >I
+nmap <M-I> \i
+nmap <M-A> \I
 
 """""""""" disable middle mouse button pasting
 map   <MiddleMouse>    <Nop>
@@ -49,6 +110,7 @@ nn  <silent> <Leader>w         :q<CR>
 nn  <silent> <D-S-w>           :bwipeout<CR>
 nn  <silent> <Leader>w         :bwipeout<CR>
 nn  <silent> <D-t>             :call Tabnew()<CR>
+nn  <silent> <D-n>             :call Tabnew()<CR>
 nn  <silent> <D-Left>          gT
 nn  <silent> <Leader><Left>    gT
 nn  <silent> <D-Right>         gt
@@ -68,14 +130,11 @@ nn  <silent> <Leader>q         :qa<CR>
 nn  <silent> <D-s>             :up<CR>
 nn  <silent> <Leader>s         :up<CR>
 
-nn  <silent> <C-Tab>           <C-^>
-nn  <silent> <C-S-Tab>         <C-^>
-nn  <silent> <Bs>              <C-^>
 nn  <silent> <Cr>              <C-^>
-nn  <silent> <M-Tab>           <C-w>w
-nn  <silent> <M-S-Tab>         <C-w>W
+" nn  <silent> <C-Tab>           :e %:h<Cr><Cr>
 nn  <silent> <Tab>             <C-w>w
-nn  <silent> <S-Tab>           <C-w>W
+nn  <silent> <D-]>             <C-w>w
+nn  <silent> <D-[>             <C-w>w
 
 nn  <silent> <Leader>h         :sp<CR>
 " nn  <silent> <Leader>i         :sp<CR>
@@ -91,8 +150,6 @@ nn  <silent> <C-w><Bs>         <C-w>=
 nn  <silent> <C-w><CR>         <C-w>\|<C-w>_
 nn  <silent> <Leader><Bs>      <C-w>=
 nn  <silent> <Leader><CR>      <C-w>\|<C-w>_
-
-nn  <silent> <Leader>`         :maca openFileBrowser:<CR>
 
 """""""""" directory browsing
 nn  <silent> <D-e>             :call BrowserFromCurrentDir()<CR>
@@ -205,22 +262,6 @@ nn           gUi<space>              F<space>lgUt<space>
 " nn >t vat>
 " nn <t vat<
 
-"""""""""" random
-" don't lose indent, but makes file dirty on each edit
-" ino <ESC> <TAB><BS><ESC>
-" C-o & C-O form insert mode
-ino          <S-CR>            <C-o>o
-ino          <D-o>             <C-o>o
-ino          <D-CR>            <C-o>O
-ino          <D-O>             <C-o>O
-
-"""""""""" I love having two control keys instead of two alts
-ino          <M-space>         <C-p>
-ino          <M-r>             <C-r>
-ino          <D-;>             <C-p>
-ino          <M-;>             <C-p>
-" nn           <M-v>             <C-v>
-
 
 """""""""" cmaps
 " cno <expr> / getcmdtype() == '/' ? '\/' : '/'
@@ -228,6 +269,20 @@ ino          <M-;>             <C-p>
 
 """""""""" dash
 nmap <silent> <F1> <Plug>DashGlobalSearch
+
+
+"""""""""" dev
+
+vmap zz :'<,'>!../../bin/zprint-filter<CR>
+nmap zz va(:'<,'>!../../bin/zprint-filter<CR>
+
+func! ZprintFilterBuffer()
+  let l:winview = winsaveview()
+  :1,$!../../bin/zprint-filter
+  call winrestview(l:winview)
+endf
+
+nmap ZA :call ZprintFilterBuffer()<CR>
 
 """""""""" other random TODO ?
 " echo highlight group at cursor location
