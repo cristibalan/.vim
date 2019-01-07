@@ -24,3 +24,14 @@ autocmd TabLeave    * call OnTabLeave()
 " keep custom global cwd the same across buffers
 " see chelu/cwd.vim
 " autocmd BufEnter    * call CdReset()
+
+" tmp fix for broken netrw (nov-dec 2017)
+" au WinEnter * set selection=exclusive
+" au BufEnter * set selection=exclusive
+" au WinEnter * set hidden
+" au BufEnter * set hidden
+
+let g:rainbow_active = 1
+" autocmd CompleteDone * pclose
+" autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif

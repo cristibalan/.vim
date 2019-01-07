@@ -1,3 +1,5 @@
+packadd! matchit
+
 " disable some built in plugins to avoid turning into a kitchen sink
 " let g:loaded_matchparen = 1      " disable matching of braces when moving around, it's too slow
 let loaded_gzip = 1              " disable editing of compressed files
@@ -20,6 +22,9 @@ let g:NERDRemoveExtraSpaces=1
 let g:NERDSpaceDelims=1
 let g:NERDMenuMode=0
 let g:NERDCreateDefaultMappings=0
+let g:NERDDefaultAlign = 'left'
+let g:NERDCommentEmptyLines = 1
+let g:NERDCustomDelimiters = { 'clojure': { 'left': ';;' } }
 
 """""""""" TOhtml
 let use_xhtml = 1
@@ -29,3 +34,20 @@ let html_use_css = 1
 
 """""""""" allml
 " let g:allml_global_maps = 1
+
+
+"""""""""" slime
+let g:slime_target = "vimterminal"
+" let g:slime_vimterminal_config = ""
+" let g:sexp_enable_insert_mode_mappings = 0
+
+let g:rainbow_levels = [
+    \{'ctermbg': 232, 'guibg': '#080808'},
+    \{'ctermbg': 233, 'guibg': '#121212'},
+    \{'ctermbg': 234, 'guibg': '#1c1c1c'},
+    \{'ctermbg': 235, 'guibg': '#262626'},
+    \{'ctermbg': 236, 'guibg': '#303030'},
+    \{'ctermbg': 237, 'guibg': '#3a3a3a'},
+    \{'ctermbg': 238, 'guibg': '#444444'},
+    \{'ctermbg': 239, 'guibg': '#4e4e4e'},
+    \{'ctermbg': 240, 'guibg': '#585858'}]

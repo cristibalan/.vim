@@ -12,11 +12,11 @@ set directory=$HOME/tmp/vim,$HOME/tmp,/var/tmp,/tmp,$TMP,$TEMP
 set nocompatible
 
 " no menus! if this doesn't work, put it in after/menu.vim. or try to run $VIMRUNTIME/delmenu.vim often
-let did_install_default_menus=1 " pretend that menus are already loaded
-let did_install_syntax_menu=1   " pretend that the syntax menu was already loaded
+" let did_install_default_menus=1 " pretend that menus are already loaded
+" let did_install_syntax_menu=1   " pretend that the syntax menu was already loaded
 " remove all menus
-aunmenu *
-set langmenu=none               " always use english menus at least
+" aunmenu *
+" set langmenu=none               " always use english menus at least
 
 " Disable logipat plugin that adds :ELP which makes :E not work
 let g:loaded_logipat = 1

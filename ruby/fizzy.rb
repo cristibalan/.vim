@@ -2,18 +2,25 @@ class Fizzy
   class TooManyEntries < RuntimeError; end
 
   NOT_DIRS = %w(
+    .cljs_nashorn_repl
+    .cljs_rhino_repl
+    .cpcache
     .git
     .jhw-cache
     .svn
     bower_components
+    classes
     compiled
+    log
+    logs
+    mnt
+    nashorn_code_cache
     node_modules
     public/a
+    resources/public/js
+    target
     tmp
     vendor
-    target
-    classes
-    resources/public/js
   ).map{|x| "-not -path '*#{x}/*'"}.join(" ")
   NOT_FILES = %w(
     *.gif

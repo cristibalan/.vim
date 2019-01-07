@@ -36,9 +36,9 @@ endfunction
 
 " inoremap <silent> <M-space> <C-R>=CleverTab('omni')<CR><C-R>=CleverTab('keyword')<CR><C-R>=CleverTab('next')<CR>
 
-ino          <M-space>         <C-n>
+ino          <M-space>         <C-p>
 ino          <M-p>             <C-p>
-ino          <S-space>         <C-x><C-o>
+" ino          <S-space>         <C-x><C-o>
 
 " Execute current line or current selection as Vim EX commands.
 nnoremap <silent> <space>ve :exe getline(".")<CR>
@@ -53,17 +53,24 @@ nmap  <M-left> mj<)mh='j
 nmap <M-o> o(
 
 noremap ' `
-" eval form
+" eval form under cursor
 nmap <f3> mlcpp'l
 " eval surrounding top level def
-nmap <M-f3> ml?def<Cr>cpp'l
-" move to col 0 of a new line below and eval form
-nmap <S-f3> mlo<esc>cppu'l
-" move to mark t, eval and move back
+nmap <M-f3> ml[[cpp'l
+" eval word under cursor
+nmap <S-f3> mlcpaw'l
+" move to mark t, eval form and move back
 map <D-f3> mk'tcpp'k
 
-" paste last eval
-nmap <f4> :Last<CR>ggVGy:pc<CR>o<esc>p==0
+" copy last eval to os clipboard
+nmap <f4> :Last<CR>ggVG<D-c>:pc<CR>
+" paste copied eval produced above and format it as clojure
+nmap <S-f4> <D-a><D-v>:v/^;/d<cr>:%s/^;/<cr>:set ft=clojure<cr>
+" paste copied eval to new tab
+nmap <D-f4> <f4><D-t><S-f4>
+" paste copied eval to a vertical split in the next tab
+nmap <M-f4> <f4><D-right>:vsp<cr>:enew<cr><S-f4>
+
 nmap <M-i> <I
 nmap <M-a> >I
 nmap <M-I> \i
@@ -92,13 +99,6 @@ if has("gui_macvim")
 
   runtime macmap.vim
 endif
-
-"""""""""" movement / heresy
-nn <silent> <M-Left> B
-nn <silent> <M-Right> W
-
-nn <silent> <M-Up> {
-nn <silent> <M-Down> }
 
 """""""""" shortcuts
 nn  <silent> <D-Cr>            :set fullscreen!<CR>
@@ -213,8 +213,14 @@ ino <C-space> <C-p>
 " ino ,.        <C-p>
 
 """""""""" <3 _
-" helpers to use _ like a word boundary
+" helpers to use _ and - like word boundaries
 " TODO maybe use smartcase.vim
+nn va9 va(
+nn vi9 va(
+nn va0 va)
+nn vi0 vi)
+
+nn           c_                ct_
 nn           cr                ct_
 nn           vr                vt_
 nn           yr                yt_
@@ -235,6 +241,28 @@ nn           yir               F_lyt_
 nn           dir               F_ldt_
 nn           guir              F_lgut_
 nn           gUir              F_lgUt_
+
+nn           c-                ct-
+nn           ce                ct-
+nn           ve                vt-
+nn           ye                yt-
+nn           de                dt-
+nn           gue               gut-
+nn           gUe               gUt-
+
+nn           cae               bct-
+nn           vae               bvt-
+nn           yae               byt-
+nn           dae               bdt-
+nn           guae              bgut-
+nn           gUae              bgUt-
+
+nn           cie               F-lct-
+nn           vie               F-lvt-
+nn           yie               F-lyt-
+nn           die               F-ldt-
+nn           guie              F-lgut-
+nn           gUie              F-lgUt-
 
 " TODO make it work at beginning/end of line
 nn           c<space>                ct<space>
